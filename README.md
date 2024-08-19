@@ -12,11 +12,11 @@ This project aims to classify the different growth stages of an orchid flower us
 4. Bounding box rendering: Draws bounding boxes around detected growth stages with labels and confidence scores.
 
 ## Installation
-Python 3.7+
-cv2 (OpenCV)
-flask
-roboflow Python package
-A Roboflow API key and model set up
+- Python 3.7+
+- cv2 (OpenCV)
+- flask
+- roboflow Python package
+- A Roboflow API key and model set up
 
 ## Setup Instructions
 
