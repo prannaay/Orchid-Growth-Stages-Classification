@@ -14,10 +14,10 @@ if not camera.isOpened():
     raise RuntimeError("Error: Could not open USB camera")
 
 # Initialize the Roboflow model
-api_key = "I6nndFWK7mGwI4vHdlxB"  # Replace with your Roboflow API key
-workspace_name = "myworkspace"  # Replace with your workspace name
-project_name = "test-h5nct"  # Replace with your project name
-version_number = 2  # Replace with your model version number
+api_key = "API_KEY"  # Replace with your Roboflow API key
+workspace_name = "WORKSPACE"  # Replace with your workspace name
+project_name = "MODEL_NAME"  # Replace with your project name
+version_number = VERSION_NUMBER  # Replace with your model version number
 
 rf = Roboflow(api_key=api_key)
 workspace = rf.workspace(workspace_name)
