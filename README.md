@@ -21,26 +21,29 @@ A Roboflow API key and model set up
 ##Setup Instructions
 
 **Clone the Repository:**
-'''bash
+```bash
 git clone https://github.com/your-username/orchid-growth-classification.git
 cd orchid-growth-classification
+```
 
 **Install Required Libraries:**
 Make sure you have the necessary dependencies installed. You can install them using:
-'''bash
+```bash
 pip install -r requirements.txt
+```
 
 **Set up Environment Variables:**
 Ensure you have your Roboflow API key, Workspace Name, Project Name, and Model Version Number ready.
 
 **Run the Flask Server:**
 After setup, start the server using:
-'''bash
+```bash
 python app.py
+```
 
 **Access the Web Interface:**
 Open your web browser and go to:
-'''arduino
+```arduino
 http://localhost:5000
-
+````
 to view the live video feed with growth stage classifications.
