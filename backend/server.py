@@ -1,6 +1,9 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, jsonify
 import cv2
 import numpy as np
+import os
+import tempfile
+from datetime import datetime
 from roboflow import Roboflow
 
 app = Flask(__name__)
@@ -14,18 +17,19 @@ if not camera.isOpened():
     raise RuntimeError("Error: Could not open USB camera")
 
 # Initialize the Roboflow model
-api_key = "API_KEY"  # Replace with your Roboflow API key
-workspace_name = "WORKSPACE"  # Replace with your workspace name
-project_name = "MODEL_NAME"  # Replace with your project name
-version_number = VERSION_NUMBER  # Replace with your model version number
+api_key = "I6nndFWK7mGwI4vHdlxB"  # Replace with your Roboflow API key
+workspace_name = "myworkspace"  # Replace with your workspace name
+project_name = "test-h5nct"  # Replace with your project name
+version_number = 2  # Replace with your model version number
 
 rf = Roboflow(api_key=api_key)
 workspace = rf.workspace(workspace_name)
 project = workspace.project(project_name)
 model = project.version(version_number).model
 
-import os
-import tempfile
+# Directory to save captured images
+capture_dir = 'captured_images'
+os.makedirs(capture_dir, exist_ok=True)
 
 def process_frame_with_roboflow(frame):
     # Convert the frame to a format suitable for Roboflow inference
@@ -87,6 +91,24 @@ def generate_frames():
 @app.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/capture_image', methods=['GET'])
+def capture_image():
+    ret, frame = camera.read()
+
+    if not ret:
+        return jsonify({'success': False, 'message': 'Failed to capture image'}), 500
+
+    # Process the frame with Roboflow Inference before saving
+    frame = process_frame_with_roboflow(frame)
+
+    # Save the captured frame
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    capture_path = os.path.join(capture_dir, f'capture_{timestamp}.jpg')
+    cv2.imwrite(capture_path, frame)
+
+    print(f"Captured and saved image: {capture_path}")
+    return jsonify({'success': True, 'message': 'Image captured successfully'})
 
 @app.route('/')
 def index():
