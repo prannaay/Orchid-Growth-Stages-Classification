@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OAK-D POE Stream</title>
+    <title>Webcam Stream with Roboflow Inference</title>
 </head>
 <body>
     <h1>Webcam Stream with Roboflow Inference</h1>
     <img src="{{ url_for('video_feed') }}" width="600" />
+    <br><br>
+    <button onclick="captureImage()">Capture Image</button>
+
+    <script>
+        function captureImage() {
+            fetch('/capture_image')
+                .then(response => {
+                    if (response.ok) {
+                        alert("Image captured successfully!");
+                    } else {
+                        alert("Failed to capture image.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error capturing image:", error);
+                    alert("Error capturing image.");
+                });
+        }
+    </script>
 </body>
 </html>
