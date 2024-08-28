@@ -18,7 +18,7 @@ This project aims to classify the different growth stages of an orchid flower us
 - roboflow Python package
 - A Roboflow API key and model set up
 
-##Prerequisites
+## Prerequisites
 Roboflow Model Training
 Before running the code, you need to train a model on Roboflow. This involves:
 
