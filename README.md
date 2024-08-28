@@ -18,6 +18,16 @@ This project aims to classify the different growth stages of an orchid flower us
 - roboflow Python package
 - A Roboflow API key and model set up
 
+##Prerequisites
+Roboflow Model Training
+Before running the code, you need to train a model on Roboflow. This involves:
+
+Data Collection: Gather images of orchids in various growth stages.
+Annotation: Label the images according to the four growth stages: Stage 1, Stage 2, Stage 3, and Petal.
+Model Training: Use Roboflow's platform to train a model on the annotated dataset.
+Deployment: Once trained, deploy the model and obtain the API key and model details.
+After completing the training process, you can integrate the model into this project to classify orchid growth stages in real-time.
+
 ## Setup Instructions
 
 **1. Clone the Repository:**
